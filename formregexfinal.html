@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOC regx</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<style>
+  .form-container{
+    background: #fff;
+    padding: 30px;
+    border-radius:3px;
+    box-shadow: 0px 0px 1px 0px;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  
+  input[type=text], select, textarea {
+    width: 85%;
+    padding: 15px;
+    border: 1px solid black;
+    margin: 5px 0px 5px 0px;
+    resize: vertical;
+    font-size: 15px;
+  }
+  input[type=tel], select, textarea {
+    width: 85%;
+    padding: 15px;
+    border: 1px solid black;
+    margin: 5px 0px 5px 0px;
+    resize: vertical;
+    font-size: 15px;
+  }
+  input[type=email], select, textarea {
+    width: 85%;
+    padding: 15px;
+    border: 1px solid black;
+    margin: 5px 0px 5px 0px;
+    resize: vertical;
+    font-size: 15px;
+  }
+  p{
+    font-size: 15px;
+    margin: 5px 0px 5px 0px;
+  }
+  input[type=submit]{
+    margin: 5px 0px 5px 0px;
+  }
+
+  table, td, th {  
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 15px;
+  }
+  .display{
+    padding-left:20%;
+    padding-top:10%;
+    width: 80%;
+    font-size: 15px;
+  }
+  .btn{
+    margin-top:10px;
+  }
+</style>
+</head>
+<body>
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="i.php">Drive Safe</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarcollapse">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="#" onclick=insert()>New</a>
+        <a class="nav-item nav-link" href="#" onclick=view()>View</a>
+      </div>
+      <form class="form-inline" action="search.inc.php" method="POST" >
+      <div style="padding:8px 5px 0px 0px">
+      <input class="form-control" type="text" placeholder="Search By Username" name="search" aria-label="Search" >
+      </div>
+    <button type="submit" name="searchbtn" class="btn btn-danger">Search</button>
+  </form>
+     </div>
+  </nav> -->
+
+ <section id="form">
+ <div class="container-fluid" style="padding-top: 30px;">
+    <section class="row justify-content-center">
+      <section class="col-12 col-md-6 col-lg-6">
+        <form id="register"> 
+          <div class="form-container">
+            <h5>Enter Your information</h5>
+            <p>Enter First Name</p>
+            <input type="text" id="fname" placeholder="first name" onkeyup=validatef()><br>
+            <label id="labeltext1" style="color:red;visibility: hidden;">Invalide</label><br>
+            <p>Enter last Name</p>
+            <input type="text" id="lname" placeholder="last name" onkeyup=validatel()><br>
+            <label id="labeltext2" style="color:red;visibility: hidden;">Invalide</label><br>
+            <p>Phone number</p>
+            <input type="text" id="phno" placeholder="Phone no" onkeyup=validateph()><br>
+            <label id="labeltext3" style="color:red;visibility: hidden;">Invalide</label><br>  
+            <p>Email ID</p>
+            <input type="text" id="email" placeholder="Email ID" onkeyup=validateemail()><br>
+            <label id="labeltext4" style="color:red;visibility:hidden;">Invalide</label><br>
+            <p>Password</p>
+            <input type="text" id="pass" placeholder="Password" onkeyup=validatepass()><br>
+            <label id="labeltextp0" style="color:red;visibility:hidden;">Invalide</label><br>
+            <button type="button" class="btn btn-primary" onclick=validatefinal()>Submit</button> 
+          </div>
+        </form>
+      </section>
+    </section>
+  </div>
+ </section>
+</body>
+<script>
+  function validateemail(){
+      var c = document.getElementById('email').value;
+       var emailregx = /^([a-zA-Z0-9\.-]+)@([a-zA-Z0-9-]+)\.([a-z]{2,10})(.[a-z]{2,10})?$/;
+       if(emailregx.test(c)){
+        document.getElementById('labeltext4').innerHTML="Valide";
+            document.getElementById('labeltext4').style.color="green";
+            document.getElementById('labeltext4').style.visibility="visible";
+            return true;
+       }
+       else{
+            document.getElementById('labeltext4').innerHTML="invalide";
+            document.getElementById('labeltext4').style.color="red";
+            document.getElementById('labeltext4').style.visibility="visible";
+       }
+  }
+  function validatef(){
+      var a = document.getElementById('fname').value;
+      var  nameregx = /^[a-zA-Z]{2,10}$/;
+       if(nameregx.test(a)){
+        document.getElementById('labeltext1').innerHTML="Valide";
+            document.getElementById('labeltext1').style.color="green";
+            document.getElementById('labeltext1').style.visibility="visible";
+            return true;
+       }
+       else{
+            document.getElementById('labeltext1').innerHTML="invalide";
+            document.getElementById('labeltext1').style.color="red";
+            document.getElementById('labeltext1').style.visibility="visible";
+       }
+  }
+  function validatel(){
+      var b = document.getElementById('lname').value;
+      var  nameregx = /^[a-zA-Z]{2,10}$/;
+       if(nameregx.test(b)){
+        document.getElementById('labeltext2').innerHTML="Valide";
+            document.getElementById('labeltext2').style.color="green";
+            document.getElementById('labeltext2').style.visibility="visible";
+            return true;
+       }
+       else{
+            document.getElementById('labeltext2').innerHTML="invalide";
+            document.getElementById('labeltext2').style.color="red";
+            document.getElementById('labeltext2').style.visibility="visible";
+       }
+  }
+  function validateph(){
+      var d = document.getElementById('phno').value;
+      var phnoregx = /^(\+91)?[6|7|8|9]{1}[0-9]{9}$/;
+       if(phnoregx.test(d)){
+            document.getElementById('labeltext3').innerHTML="Valide";
+            document.getElementById('labeltext3').style.color="green";
+            document.getElementById('labeltext3').style.visibility="visible";
+            return true;
+       }
+       else{
+            document.getElementById('labeltext3').innerHTML="invalide";
+            document.getElementById('labeltext3').style.color="red";
+            document.getElementById('labeltext3').style.visibility="visible";
+       }
+  }
+  function validatepass(){
+    var e = document.getElementById('pass').value;
+    var weakregex=/^(?=.*[a-z])(?=.*[0-9])[a-z0-9]{8,20}$/;
+    var modrateregex=/^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])[a-zA-Z0-9]{8,20}$/;
+    var strongregex=/^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
+    function weak(){
+      if(weakregex.test(e)){
+            return true;
+    }
+    else{
+            return false;
+    }
+  }
+  function modrate(){
+    if(modrateregex.test(e)){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+  function strong(){
+    if(strongregex.test(e)){
+      return true;
+
+    }
+    else{
+      return false;
+    }
+  }
+  if(weak()){
+            document.getElementById('labeltextp0').style.color="blue";
+            document.getElementById('labeltextp0').innerHTML="Weak";
+            document.getElementById('labeltextp0').style.visibility="visible";
+            console.log("weak");
+            return true;
+  }
+  else if(modrate()){
+            document.getElementById('labeltextp0').style.color="Yellow";
+            document.getElementById('labeltextp0').innerHTML="Moderate";
+            document.getElementById('labeltextp0').style.visibility="visible";
+            console.log("modrate");
+            return true;
+
+  }
+  else if(strong()){
+            console.log("strong");
+            document.getElementById('labeltextp0').style.color="green";
+            document.getElementById('labeltextp0').innerHTML="Strong";
+            document.getElementById('labeltextp0').style.visibility="visible";
+            return true;
+  }
+  else{
+            document.getElementById('labeltextp0').style.color="red";
+            document.getElementById('labeltextp0').innerHTML="Invalide";
+            document.getElementById('labeltextp0').style.visibility="visible";
+
+  }
+}
+function validatefinal(){
+  if(validateemail() && validatef() && validatel() && validateph() && validatepass()){
+    alert("Submitted successfully");
+    console.log("yup");
+    document.getElementById("labeltext1").style.visibility="hidden";
+    document.getElementById("labeltext2").style.visibility="hidden";
+    document.getElementById("labeltext3").style.visibility="hidden";
+    document.getElementById("labeltext4").style.visibility="hidden";
+    document.getElementById("labeltextp0").style.visibility="hidden";
+    document.getElementById('register').reset();
+  }
+
+}
+</script>
+</html>
