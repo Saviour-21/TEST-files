@@ -104,19 +104,19 @@
             <h5>Enter Your information</h5>
             <p>Enter First Name</p>
             <input type="text" id="fname" placeholder="first name" onkeyup=validatef()><br>
-            <label id="labeltext1" style="color:red;visibility: hidden;">Invalide</label><br>
+            <label id="labeltext1" style="color:red;visibility: hidden;">Invalid</label><br>
             <p>Enter last Name</p>
             <input type="text" id="lname" placeholder="last name" onkeyup=validatel()><br>
-            <label id="labeltext2" style="color:red;visibility: hidden;">Invalide</label><br>
+            <label id="labeltext2" style="color:red;visibility: hidden;">Invalid</label><br>
             <p>Phone number</p>
             <input type="text" id="phno" placeholder="Phone no" onkeyup=validateph()><br>
-            <label id="labeltext3" style="color:red;visibility: hidden;">Invalide</label><br>  
+            <label id="labeltext3" style="color:red;visibility: hidden;">Invalid</label><br>  
             <p>Email ID</p>
             <input type="text" id="email" placeholder="Email ID" onkeyup=validateemail()><br>
-            <label id="labeltext4" style="color:red;visibility:hidden;">Invalide</label><br>
+            <label id="labeltext4" style="color:red;visibility:hidden;">Invalid</label><br>
             <p>Password</p>
             <input type="text" id="pass" placeholder="Password" onkeyup=validatepass()><br>
-            <label id="labeltextp0" style="color:red;visibility:hidden;">Invalide</label><br>
+            <label id="labeltextp0" style="color:red;visibility:hidden;">Invalid</label><br>
             <button type="button" class="btn btn-primary" onclick=validatefinal()>Submit</button> 
           </div>
         </form>
@@ -130,13 +130,13 @@
       var c = document.getElementById('email').value;
        var emailregx = /^([a-zA-Z0-9\.-]+)@([a-zA-Z0-9-]+)\.([a-z]{2,10})(.[a-z]{2,10})?$/;
        if(emailregx.test(c)){
-        document.getElementById('labeltext4').innerHTML="Valide";
+        document.getElementById('labeltext4').innerHTML="Valid";
             document.getElementById('labeltext4').style.color="green";
             document.getElementById('labeltext4').style.visibility="visible";
             return true;
        }
        else{
-            document.getElementById('labeltext4').innerHTML="invalide";
+            document.getElementById('labeltext4').innerHTML="Invalid";
             document.getElementById('labeltext4').style.color="red";
             document.getElementById('labeltext4').style.visibility="visible";
        }
@@ -145,13 +145,13 @@
       var a = document.getElementById('fname').value;
       var  nameregx = /^[a-zA-Z]{2,10}$/;
        if(nameregx.test(a)){
-        document.getElementById('labeltext1').innerHTML="Valide";
+        document.getElementById('labeltext1').innerHTML="Valid";
             document.getElementById('labeltext1').style.color="green";
             document.getElementById('labeltext1').style.visibility="visible";
             return true;
        }
        else{
-            document.getElementById('labeltext1').innerHTML="invalide";
+            document.getElementById('labeltext1').innerHTML="Invalid";
             document.getElementById('labeltext1').style.color="red";
             document.getElementById('labeltext1').style.visibility="visible";
        }
@@ -160,13 +160,13 @@
       var b = document.getElementById('lname').value;
       var  nameregx = /^[a-zA-Z]{2,10}$/;
        if(nameregx.test(b)){
-        document.getElementById('labeltext2').innerHTML="Valide";
+        document.getElementById('labeltext2').innerHTML="Valid";
             document.getElementById('labeltext2').style.color="green";
             document.getElementById('labeltext2').style.visibility="visible";
             return true;
        }
        else{
-            document.getElementById('labeltext2').innerHTML="invalide";
+            document.getElementById('labeltext2').innerHTML="Invalid";
             document.getElementById('labeltext2').style.color="red";
             document.getElementById('labeltext2').style.visibility="visible";
        }
@@ -175,13 +175,13 @@
       var d = document.getElementById('phno').value;
       var phnoregx = /^(\+91)?[6|7|8|9]{1}[0-9]{9}$/;
        if(phnoregx.test(d)){
-            document.getElementById('labeltext3').innerHTML="Valide";
+            document.getElementById('labeltext3').innerHTML="Valid";
             document.getElementById('labeltext3').style.color="green";
             document.getElementById('labeltext3').style.visibility="visible";
             return true;
        }
        else{
-            document.getElementById('labeltext3').innerHTML="invalide";
+            document.getElementById('labeltext3').innerHTML="Invalid";
             document.getElementById('labeltext3').style.color="red";
             document.getElementById('labeltext3').style.visibility="visible";
        }
@@ -240,7 +240,7 @@
   }
   else{
             document.getElementById('labeltextp0').style.color="red";
-            document.getElementById('labeltextp0').innerHTML="Invalide";
+            document.getElementById('labeltextp0').innerHTML="Invalid";
             document.getElementById('labeltextp0').style.visibility="visible";
 
   }
