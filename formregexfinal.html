@@ -76,6 +76,25 @@
 </style>
 </head>
 <body>
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="i.php">Drive Safe</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarcollapse">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="#" onclick=insert()>New</a>
+        <a class="nav-item nav-link" href="#" onclick=view()>View</a>
+      </div>
+      <form class="form-inline" action="search.inc.php" method="POST" >
+      <div style="padding:8px 5px 0px 0px">
+      <input class="form-control" type="text" placeholder="Search By Username" name="search" aria-label="Search" >
+      </div>
+    <button type="submit" name="searchbtn" class="btn btn-danger">Search</button>
+  </form>
+     </div>
+  </nav> -->
+
  <section id="form">
  <div class="container-fluid" style="padding-top: 30px;">
     <section class="row justify-content-center">
@@ -85,19 +104,19 @@
             <h5>Enter Your information</h5>
             <p>Enter First Name</p>
             <input type="text" id="fname" placeholder="first name" onkeyup=validatef()><br>
-            <label id="labeltext1" style="color:red;visibility: hidden;">Invalid</label><br>
+            <label id="labeltext1" style="color:red;visibility: visible;">Invalid</label><br>
             <p>Enter last Name</p>
             <input type="text" id="lname" placeholder="last name" onkeyup=validatel()><br>
-            <label id="labeltext2" style="color:red;visibility: hidden;">Invalid</label><br>
+            <label id="labeltext2" style="color:red;visibility: visible;">Invalid</label><br>
             <p>Phone number</p>
             <input type="text" id="phno" placeholder="Phone no" onkeyup=validateph()><br>
-            <label id="labeltext3" style="color:red;visibility: hidden;">Invalid</label><br>  
+            <label id="labeltext3" style="color:red;visibility: visible;">Invalid</label><br>  
             <p>Email ID</p>
             <input type="text" id="email" placeholder="Email ID" onkeyup=validateemail()><br>
-            <label id="labeltext4" style="color:red;visibility:hidden;">Invalid</label><br>
+            <label id="labeltext4" style="color:red;visibility:visible;">Invalid</label><br>
             <p>Password</p>
             <input type="text" id="pass" placeholder="Password" onkeyup=validatepass()><br>
-            <label id="labeltextp0" style="color:red;visibility:hidden;">Invalid</label><br>
+            <label id="labeltextp0" style="color:red;visibility:visible;">Invalid</label><br>
             <button type="button" class="btn btn-primary" onclick=validatefinal()>Submit</button> 
           </div>
         </form>
@@ -109,7 +128,7 @@
 <script>
   function validateemail(){
       var c = document.getElementById('email').value;
-       var emailregx = /^([a-zA-Z0-9\.-]+)@([a-zA-Z0-9-]+)\.([a-z]{2,10})(.[a-z]{2,10})?$/;
+      var emailregx = /^([a-zA-Z0-9\.-]+)@([a-zA-Z0-9-]+)\.([a-z]{2,10})(.[a-z]{2,10})?$/;
        if(emailregx.test(c)){
         document.getElementById('labeltext4').innerHTML="Valid";
             document.getElementById('labeltext4').style.color="green";
@@ -205,7 +224,7 @@
             return true;
   }
   else if(modrate()){
-            document.getElementById('labeltextp0').style.color="Yellow";
+            document.getElementById('labeltextp0').style.color="#003366";
             document.getElementById('labeltextp0').innerHTML="Moderate";
             document.getElementById('labeltextp0').style.visibility="visible";
             console.log("modrate");
@@ -236,6 +255,9 @@ function validatefinal(){
     document.getElementById("labeltext4").style.visibility="hidden";
     document.getElementById("labeltextp0").style.visibility="hidden";
     document.getElementById('register').reset();
+  }
+  else{
+    alert("Please check information you filled");
   }
 
 }
